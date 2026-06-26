@@ -113,13 +113,15 @@ http://127.0.0.1:8000/docs
 
 ### Products Endpoint
 
-![Products Endpoint](images/products-endpoint.png)
+![Products Endpoint](<img width="899" height="445" alt="Screenshot 2026-06-26 204958" src="https://github.com/user-attachments/assets/dbc9d7e3-9886-477d-ab61-2c0c9f8aa817" />
+)
 
 ---
 
 ### Health Endpoint
 
-![Health Endpoint](images/health-endpoint.png)
+![Health Endpoint](<img width="944" height="434" alt="Screenshot 2026-06-26 204925" src="https://github.com/user-attachments/assets/fc243f40-2c2c-403b-80fb-0271a0fae49e" />
+)
 
 ---
 
