@@ -1,32 +1,39 @@
-# 🚀 Product Catalog API
+# 🚀 CodeVector Backend Assignment
 
-A production-ready backend built with **FastAPI** that supports browsing approximately **200,000 products** using **cursor-based pagination**, category filtering, and efficient database querying.
+A scalable backend API built with **FastAPI** to efficiently browse a catalog of approximately **200,000 products**.
 
-This project was developed as part of the **CodeVector Backend Take-Home Assignment**.
+The application supports:
 
----
-
-## ✨ Features
-
-* Cursor-based pagination (avoids duplicates and missing records)
-* Browse products ordered by newest first (`updated_at DESC, id DESC`)
-* Filter products by category
-* Efficient handling of large datasets (~200,000 products)
-* Bulk product generation using a seed script
-* RESTful API with automatic Swagger documentation
-* Health check endpoint
-* Clean and modular project structure
+* Cursor-based pagination
+* Category filtering
+* Fast product browsing
+* Efficient database querying
+* Bulk data generation
+* Interactive API documentation using Swagger UI
 
 ---
 
 ## 🛠 Tech Stack
 
-* **Python**
-* **FastAPI**
-* **SQLAlchemy**
-* **SQLite** *(can be switched to PostgreSQL with minimal configuration changes)*
-* **Pydantic**
-* **Uvicorn**
+* **Language:** Python
+* **Framework:** FastAPI
+* **Database:** SQLite
+* **ORM:** SQLAlchemy
+* **Validation:** Pydantic
+* **Server:** Uvicorn
+
+---
+
+## ✨ Features
+
+* Browse products ordered by newest first
+* Cursor-based pagination (no OFFSET pagination)
+* Category filtering
+* Seed script for generating ~200,000 products
+* RESTful API
+* Automatic Swagger API documentation
+* Health check endpoint
+* Modular project structure
 
 ---
 
@@ -44,43 +51,43 @@ This project was developed as part of the **CodeVector Backend Take-Home Assignm
 ├── requirements.txt
 ├── README.md
 └── images/
-    ├── swagger-home.png
-    ├── products-endpoint.png
-    └── health-endpoint.png
+    ├── swagger-ui.png
+    ├── products-api.png
+    └── health-api.png
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation
 
-### Clone the repository
+Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/codevector-backend-assignment.git
+git clone https://github.com/Jerry-Abhi/codevector-backend-assignment.git
 cd codevector-backend-assignment
 ```
 
-### Install dependencies
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Generate sample data
+Generate sample data
 
 ```bash
 python seed.py
 ```
 
-### Run the API
+Run the application
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Open:
+Open Swagger UI
 
-```text
+```
 http://127.0.0.1:8000/docs
 ```
 
@@ -88,103 +95,99 @@ http://127.0.0.1:8000/docs
 
 ## 📌 API Endpoints
 
-| Method | Endpoint        | Description                                  |
-| ------ | --------------- | -------------------------------------------- |
-| GET    | `/`             | Health Check                                 |
-| GET    | `/api/products` | Browse products with cursor-based pagination |
+| Method | Endpoint        | Description     |
+| ------ | --------------- | --------------- |
+| GET    | `/`             | Health Check    |
+| GET    | `/api/products` | Browse products |
 
 ### Query Parameters
 
-| Parameter  | Description                         |
-| ---------- | ----------------------------------- |
-| `limit`    | Number of products per page         |
-| `category` | Filter by category                  |
-| `cursor`   | Cursor token from previous response |
+| Parameter | Description                 |
+| --------- | --------------------------- |
+| limit     | Number of products to fetch |
+| category  | Filter by category          |
+| cursor    | Cursor for next page        |
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
-### Swagger UI
+## Swagger UI
 
-![Swagger UI](images/swagger-home.png)
-
----
-
-### Products Endpoint
-
-![Products Endpoint](<img width="899" height="445" alt="Screenshot 2026-06-26 204958" src="https://github.com/user-attachments/assets/dbc9d7e3-9886-477d-ab61-2c0c9f8aa817" />
-)
+![Swagger UI](images/swagger-ui.png)
 
 ---
 
-### Health Endpoint
+## Products API
 
-![Health Endpoint](<img width="944" height="434" alt="Screenshot 2026-06-26 204925" src="https://github.com/user-attachments/assets/fc243f40-2c2c-403b-80fb-0271a0fae49e" />
-)
+![Products API](images/products-api.png)
+
+---
+
+## Health Check
+
+![Health Check](images/health-api.png)
 
 ---
 
 ## ⚡ Design Decisions
 
-### Why Cursor Pagination?
+### Cursor-Based Pagination
 
-Instead of OFFSET pagination, this project uses **cursor-based pagination** because it:
+This project uses **cursor pagination** instead of OFFSET pagination because it:
 
-* Prevents duplicate records
-* Prevents missing records when data changes
-* Performs efficiently even with large datasets
-* Maintains stable ordering using `updated_at` and `id`
+* Provides better performance for large datasets.
+* Prevents duplicate records.
+* Prevents missing records while data changes.
+* Scales efficiently.
 
----
-
-### Product Ordering
-
-Products are always returned using:
+Products are sorted using:
 
 ```sql
 ORDER BY updated_at DESC, id DESC
 ```
 
-This guarantees deterministic ordering even when multiple products share the same timestamp.
+Using both `updated_at` and `id` guarantees consistent ordering.
 
 ---
 
 ## 🌱 Seed Script
 
-The repository includes a `seed.py` script that efficiently generates approximately **200,000 products**.
+The project includes a seed script that efficiently generates approximately **200,000 products**.
 
 Each product contains:
 
-* ID
+* Product ID
 * Name
 * Category
 * Price
-* Created At
-* Updated At
+* Created Timestamp
+* Updated Timestamp
 
 ---
 
 ## 📈 Future Improvements
 
-If given more time, I would add:
+Given more time, I would add:
 
-* PostgreSQL deployment (Neon/Supabase)
+* PostgreSQL support
+* Docker
 * Redis caching
-* Docker support
 * Authentication & Authorization
 * Unit and Integration Tests
-* CI/CD pipeline
-* Logging and Monitoring
+* CI/CD Pipeline
+* Logging & Monitoring
 
 ---
 
 ## 🤖 AI Usage
 
-AI tools were used to assist with brainstorming, architecture discussions, documentation, and implementation suggestions. The generated code was reviewed, understood, tested, and adapted before being included in the final solution.
+AI tools were used as a development assistant for brainstorming, implementation guidance, documentation, and reviewing the solution. All generated code was reviewed, understood, tested, and adapted before being included in the final project.
 
 ---
 
 ## 👨‍💻 Author
 
 **Abhishek Anand**
+
+GitHub: https://github.com/Jerry-Abhi
